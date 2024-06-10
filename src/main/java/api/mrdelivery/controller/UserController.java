@@ -1,4 +1,4 @@
-package api.mrdelivery.domain;
+package api.mrdelivery.controller;
 
 import java.security.Principal;
 

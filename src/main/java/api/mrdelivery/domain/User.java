@@ -37,39 +37,76 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 
+    @OneToMany(mappedBy = "user")
+    private List<UserActivity> userActivities;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserAddresses> userAddresses;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserContacts> userContacts;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserLoginAttempts> userLoginAttempts;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserNotification> userNotifications;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserPermission> userPermissions;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserPreferences> userPreferences;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserProfiles> userProfiles;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserRating> userRatings;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserSetting> userSettings;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserSuscriptions> userSuscriptions;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserVerification> userVerifications;
+
+
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities(){
+    public Collection<? extends GrantedAuthority> getAuthorities() {
         return role.getAuthorities();
     }
 
     @Override
-    public String getPassword(){
+    public String getPassword() {
         return password;
     }
-    
+
     @Override
-    public String getUsername(){
+    public String getUsername() {
         return email;
     }
 
     @Override
-    public boolean isAccountNonExpired(){
+    public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
-    public boolean isAccountNonLocked(){
+    public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
-    public boolean isCredentialsNonExpired(){
+    public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
-    public boolean isEnabled(){
+    public boolean isEnabled() {
         return true;
     }
-    
+
 }
