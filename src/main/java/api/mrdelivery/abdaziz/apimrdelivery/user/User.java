@@ -13,6 +13,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -47,7 +48,10 @@ public class User implements UserDetails {
     private List<Token> tokens;
 
     @OneToMany(mappedBy = "user")
-    private List<UserAddresses> user_addresses; // Assuming Address entity exists
+    private List<UserAddresses> user_addresses;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserActivity> user_activity;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){

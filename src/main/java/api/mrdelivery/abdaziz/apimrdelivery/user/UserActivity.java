@@ -6,9 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 import java.time.LocalDateTime;
 
 @Builder
@@ -22,7 +26,9 @@ public class UserActivity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long activity_id;
     
-    private Long user_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id") //bind dengan column name
+    public User user; // reference pakai class
     
     private String activity_type;
     
