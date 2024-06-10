@@ -1,5 +1,6 @@
 package api.mrdelivery.abdaziz.apimrdelivery.user;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -15,9 +16,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 @Data
 @Builder
@@ -34,12 +36,18 @@ public class User implements UserDetails {
     private String lastname;
     private String email;
     private String password;
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
+    private LocalDateTime deleted_at;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserAddresses> user_addresses; // Assuming Address entity exists
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
