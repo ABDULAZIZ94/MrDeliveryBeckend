@@ -8,7 +8,7 @@
 		<version>3.3.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>api.mrdelivery.abdaziz</groupId>
+	<groupId>api.mrdelivery</groupId>
 	<artifactId>apimrdelivery</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>apimrdelivery</name>
