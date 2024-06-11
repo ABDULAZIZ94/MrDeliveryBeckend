@@ -39237,3 +39237,7 @@ java.lang.Error: Unresolved compilation problem:
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) ~[spring-boot-3.3.0.jar:3.3.0]
 	at api.mrdelivery.ApimrdeliveryApplication.main(ApimrdeliveryApplication.java:20) ~[classes/:na]
 
+2024-06-11T15:50:03.083+08:00 ERROR 23828 --- [apimrdelivery] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : Unknown column 'up1_0.profile_id' in 'field list'
+2024-06-11T16:00:40.550+08:00 ERROR 10520 --- [apimrdelivery] [http-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : Unknown column 'up1_0.profile_id' in 'field list'
+2024-06-11T16:03:37.469+08:00 ERROR 9372 --- [apimrdelivery] [http-nio-8080-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : Unknown column 'up1_0.profile_id' in 'field list'
+2024-06-11T16:12:52.432+08:00 ERROR 22180 --- [apimrdelivery] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : Unknown column 'up1_0.profile_id' in 'field list'
