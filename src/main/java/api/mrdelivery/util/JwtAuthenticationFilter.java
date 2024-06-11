@@ -1,4 +1,4 @@
-package api.mrdelivery.config;
+package api.mrdelivery.util;
 
 import java.io.IOException;
 

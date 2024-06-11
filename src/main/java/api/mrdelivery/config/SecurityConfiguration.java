@@ -13,6 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
+import api.mrdelivery.util.JwtAuthenticationFilter;
+
 import static api.mrdelivery.util.constants.Permission.*;
 import static api.mrdelivery.util.constants.Role.ADMIN;
 import static org.springframework.http.HttpMethod.*;
