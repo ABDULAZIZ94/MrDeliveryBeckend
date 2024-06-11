@@ -44,4 +44,10 @@ public class UserService {
 
     }
 
+    public User getUserDetails2(Integer user_id) {
+        User user = repository.findById(user_id).orElseThrow(() -> new IllegalStateException("User not found"));
+        return user;
+
+    }
+
 }
