@@ -1,5 +1,9 @@
 package api.mrdelivery.domain;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.grammars.hql.HqlParser.LocalDateTimeContext;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import api.mrdelivery.util.constants.TokenType;
@@ -7,7 +11,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -35,8 +38,10 @@ public class Token {
     public TokenType tokenType = TokenType.BEARER;
 
     public boolean revoked;
-
     public boolean expired;
+    private LocalDateTime createdAt;
+    private LocalDateTime expiresAt;
+    private LocalDateTime validatedAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

@@ -13,5 +13,15 @@
     "name": "application.security.jwt.expiration",
     "type": "java.lang.String",
     "description": "A description for 'application.security.jwt.expiration'"
+  },
+  {
+    "name": "application.mailing.frontend.activation-url",
+    "type": "java.lang.String",
+    "description": "A description for 'application.mailing.frontend.activation-url'"
+  },
+  {
+    "name": "application.mailing.frontend.reset-password-url",
+    "type": "java.lang.String",
+    "description": "A description for 'application.mailing.frontend.reset-password-url'"
   }
 ]}

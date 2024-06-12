@@ -38,10 +38,20 @@ public class JwtService {
         return generateToken(new HashMap<>(), userDetails);
     }
 
+    public String generateResetPwdToken(String username) {
+        return generateResetPwdToken(new HashMap<>(), username);
+    }
+
     public String generateToken(
             Map<String, Object> extraClaims,
             UserDetails userDetails) {
         return buildToken(extraClaims, userDetails, jwtExpiration);
+    }
+
+    public String generateResetPwdToken(
+            Map<String, Object> extraClaims,
+            String username) {
+        return buildResetPwdTokenToken(extraClaims, username, jwtExpiration);
     }
 
     public String generateRefreshToken(
@@ -63,6 +73,21 @@ public class JwtService {
                 .compact();
     }
 
+    private String buildResetPwdTokenToken(
+            Map<String, Object> extraClaims,
+            String username,
+            long expiration) {
+        return Jwts
+                .builder()
+                .setClaims(extraClaims)
+                .setSubject(username)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    //ensure userdetails.username and token.username is same , ensure is not expired 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
