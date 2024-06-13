@@ -54,6 +54,11 @@ public class UserService {
     }
 
     public UserProfiles saveUserProfiles(UserProfiles userProfiles){
+        //assign user
         return iUserProfileRepository.save(userProfiles);
+    }
+
+    public UserProfiles retrieveUserProfiles(Integer user_id){
+        return iUserProfileRepository.findByUser_id(user_id);
     }
 }

@@ -110,7 +110,7 @@ public class AuthenticationService {
     }
 
     private void revokeAllUserTokens(User user) {
-        var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
+        var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId(), TokenType.BEARER);
         if (validUserTokens.isEmpty())
             return;
         validUserTokens.forEach(token -> {
@@ -134,6 +134,7 @@ public class AuthenticationService {
         if (userEmail != null) {
             var user = this.repository.findByEmail(userEmail)
                     .orElseThrow();
+            //find by token
             if (jwtService.isTokenValid(refreshToken, user)) {
                 var accessToken = jwtService.generateToken(user);
                 revokeAllUserTokens(user);

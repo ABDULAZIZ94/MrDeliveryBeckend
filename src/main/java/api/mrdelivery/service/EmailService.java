@@ -19,6 +19,9 @@ import java.util.Map;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.springframework.mail.javamail.MimeMessageHelper.MULTIPART_MODE_MIXED;
 
+/**
+ * email service to send email from backend to recepient
+ */
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -26,6 +29,16 @@ public class EmailService {
     private final JavaMailSender mailSender;
     private final SpringTemplateEngine templateEngine;
 
+    /**
+     * 
+     * @param to
+     * @param username
+     * @param emailTemplate
+     * @param confirmationUrl
+     * @param activationCode
+     * @param subject
+     * @throws MessagingException
+     */
     @Async
     public void sendEmail(
             String to,
