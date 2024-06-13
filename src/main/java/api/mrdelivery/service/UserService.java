@@ -8,8 +8,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import api.mrdelivery.domain.User;
+import api.mrdelivery.domain.UserProfiles;
 import api.mrdelivery.dto.ChangePasswordRequest;
 import api.mrdelivery.dto.UserDTO;
+import api.mrdelivery.repository.IUserProfileRepository;
 import api.mrdelivery.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +22,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final IUserRepository repository;
     private final ModelMapper modelMapper;
+    private final IUserProfileRepository iUserProfileRepository;
 
     public void changePassword(ChangePasswordRequest request, Principal connectedUser){
         var user = (User) (((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal());
@@ -50,4 +53,7 @@ public class UserService {
 
     }
 
+    public UserProfiles saveUserProfiles(UserProfiles userProfiles){
+        return iUserProfileRepository.save(userProfiles);
+    }
 }

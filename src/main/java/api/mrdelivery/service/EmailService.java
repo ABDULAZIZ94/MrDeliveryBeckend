@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 
+import api.mrdelivery.util.constants.EmailTemplateName;
+
 import java.util.HashMap;
 import java.util.Map;
 

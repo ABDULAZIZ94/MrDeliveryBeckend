@@ -22,6 +22,7 @@ import api.mrdelivery.dto.AuthenticationResponse;
 import api.mrdelivery.dto.RegisterRequest;
 import api.mrdelivery.repository.ITokenRepository;
 import api.mrdelivery.repository.IUserRepository;
+import api.mrdelivery.util.constants.EmailTemplateName;
 import api.mrdelivery.util.constants.TokenType;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -56,6 +57,7 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken);
+        saveRefreshToken(savedUser, refreshToken);
         sendValidationEmail(user);
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
@@ -74,6 +76,7 @@ public class AuthenticationService {
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
+        saveRefreshToken(user, refreshToken);
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
@@ -85,6 +88,19 @@ public class AuthenticationService {
                 .user(user)
                 .token(jwtToken)
                 .tokenType(TokenType.BEARER)
+                .createdAt(LocalDateTime.now())
+                .expiresAt(LocalDateTime.now().plusMinutes(15))
+                .expired(false)
+                .revoked(false)
+                .build();
+        tokenRepository.save(token);
+    }
+
+    private void saveRefreshToken(User user, String refreshToken) {
+        var token = Token.builder()
+                .user(user)
+                .token(refreshToken)
+                .tokenType(TokenType.REFRESH)
                 .createdAt(LocalDateTime.now())
                 .expiresAt(LocalDateTime.now().plusMinutes(15))
                 .expired(false)

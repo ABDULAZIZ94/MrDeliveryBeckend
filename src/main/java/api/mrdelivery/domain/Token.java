@@ -2,8 +2,6 @@ package api.mrdelivery.domain;
 
 import java.time.LocalDateTime;
 
-import org.hibernate.grammars.hql.HqlParser.LocalDateTimeContext;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import api.mrdelivery.util.constants.TokenType;

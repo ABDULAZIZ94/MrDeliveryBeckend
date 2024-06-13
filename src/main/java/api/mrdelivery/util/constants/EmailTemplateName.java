@@ -1,4 +1,4 @@
-package api.mrdelivery.service;
+package api.mrdelivery.util.constants;
 
 import lombok.Getter;
 

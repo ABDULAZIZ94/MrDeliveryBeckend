@@ -10,6 +10,7 @@ import api.mrdelivery.domain.Token;
 import api.mrdelivery.domain.User;
 import api.mrdelivery.repository.ITokenRepository;
 import api.mrdelivery.repository.IUserRepository;
+import api.mrdelivery.util.constants.EmailTemplateName;
 import api.mrdelivery.util.constants.TokenType;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,9 @@
 package api.mrdelivery.domain;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -19,23 +22,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class UserRating {
-    
+public class UserWorkExperience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long rating_id;
+    private Long userprofile_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id") //bind dengan column name
-    public User user; // reference pakai class
+    @JoinColumn(name = "profile_id")
+    @JsonBackReference
+    private UserProfiles userProfiles;
 
-    private int rating_value;
-
-    private Long rated_by;
+    private String job_name;
+    private String title;
+    private LocalDate start_date;
+    private LocalDate end_date;
 
     private LocalDateTime created_at;
-
     private LocalDateTime updated_at;
-
     private LocalDateTime deleted_at;
 }
