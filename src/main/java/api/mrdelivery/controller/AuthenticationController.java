@@ -59,27 +59,27 @@ public class AuthenticationController {
     // service.sendValidationEmail(username);
     // }
 
-    @GetMapping("/activate-account")
-    public void confirm(
-            @RequestParam String token) throws MessagingException {
-        service.activateAccount(token);
-    }
+    // @GetMapping("/activate-account")
+    // public void confirm(
+    //         @RequestParam String token) throws MessagingException {
+    //     service.activateAccount(token);
+    // }
 
-    @GetMapping("/forget-password")
-    public void resetpwd(
-            @RequestParam String username) throws MessagingException {
-        forgetpwdservice.sendResetPasswordEmail(username);
-    }
+    // @GetMapping("/forget-password")
+    // public void resetpwd(
+    //         @RequestParam String username) throws MessagingException {
+    //     forgetpwdservice.sendResetPasswordEmail(username);
+    // }
 
-    @GetMapping("/new-password")
-    public void newpwd(
-            @RequestParam String token,
-            @RequestParam String newpwd) throws MessagingException {
-        try {
-            forgetpwdservice.processResetPasswordToken(token, newpwd);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+    // @GetMapping("/new-password")
+    // public void newpwd(
+    //         @RequestParam String token,
+    //         @RequestParam String newpwd) throws MessagingException {
+    //     try {
+    //         forgetpwdservice.processResetPasswordToken(token, newpwd);
+    //     } catch (Exception e) {
+    //         // TODO Auto-generated catch block
+    //         e.printStackTrace();
+    //     }
+    // }
 }

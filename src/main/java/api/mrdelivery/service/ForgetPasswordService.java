@@ -7,8 +7,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import api.mrdelivery.domain.Token;
+import api.mrdelivery.domain.User;
 import api.mrdelivery.repository.ITokenRepository;
 import api.mrdelivery.repository.IUserRepository;
+import api.mrdelivery.util.constants.TokenType;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 
@@ -50,14 +52,24 @@ public class ForgetPasswordService {
     }
 
     public void sendResetPasswordEmail(String username) throws MessagingException {
-        var newToken = generateResetPasswordToken(username);
+        User user = repository.findByEmail(username).get();
+        String generatedToken = generateResetPasswordToken(username);
+        var token = Token.builder()
+        .token(generatedToken)
+        .tokenType(TokenType.RESETPWD)
+        .createdAt(LocalDateTime.now())
+        .expiresAt(LocalDateTime.now().plusMinutes(60))
+        .user(user)
+        .build();
 
+        tokenRepository.save(token);
+        
         emailService.sendEmail(
                 username,
                 username,
-                EmailTemplateName.ACTIVATE_ACCOUNT,
+                EmailTemplateName.RESET_PASSWORD,
                 resetPasswordUrl,
-                newToken,
+                generatedToken,
                 "Reset Password");
     }
 }

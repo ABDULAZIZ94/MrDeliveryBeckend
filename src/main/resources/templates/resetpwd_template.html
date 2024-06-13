@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Reset Password Email</title>
+</head>
+
+<body>
+    <p th:text="'Hello, ' + ${username} + 'please reset your password withhin 24 hours!click here'"></p>
+    <a th:href="${confirmationUrl} +'?token='+${activation_code}">Reset Now</a>
+</body>
+
+</html>

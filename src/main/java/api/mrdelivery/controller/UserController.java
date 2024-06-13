@@ -32,6 +32,14 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+    // @PatchMapping
+    // public ResponseEntity<?> chagePassword2(
+    //         @RequestBody ChangePasswordRequest request,
+    //         Principal forgetPwdUser) {
+    //     service.changePassword(request, forgetPwdUser);
+    //     return ResponseEntity.ok().build();
+    // }
+
     @GetMapping("/details")
     public ResponseEntity<UserDTO> getUsersDetails(@RequestParam Integer user_id) {
         UserDTO details = service.getUserDetails(user_id);

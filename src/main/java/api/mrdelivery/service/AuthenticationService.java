@@ -156,8 +156,9 @@ public class AuthenticationService {
         String generatedToken = generateActivationCode(6);
         var token = Token.builder()
                 .token(generatedToken)
+                .tokenType(TokenType.ACTIVATION)
                 .createdAt(LocalDateTime.now())
-                .expiresAt(LocalDateTime.now().plusMinutes(15))
+                .expiresAt(LocalDateTime.now().plusMinutes(60))
                 .user(user)
                 .build();
         tokenRepository.save(token);
