@@ -2,6 +2,8 @@ package api.mrdelivery.domain;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -20,13 +22,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class UserSuscriptions {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long subscription_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id") //bind dengan column name
+    @JoinColumn(name = "user_id") // bind dengan column name
+    @JsonBackReference
     public User user; // reference pakai class
 
     private String subscription_type;

@@ -2,6 +2,8 @@ package api.mrdelivery.domain;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +28,8 @@ public class UserVerification {
     private Long preference_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id") //bind dengan column name
+    @JoinColumn(name = "user_id") // bind dengan column name
+    @JsonBackReference
     public User user; // reference pakai class
 
     private String preference_key;

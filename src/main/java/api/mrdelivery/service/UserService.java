@@ -3,16 +3,20 @@ package api.mrdelivery.service;
 import java.security.Principal;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import api.mrdelivery.controller.BasicInfoRequest;
 import api.mrdelivery.domain.User;
 import api.mrdelivery.domain.UserProfiles;
 import api.mrdelivery.dto.ChangePasswordRequest;
 import api.mrdelivery.dto.UserDTO;
 import api.mrdelivery.repository.IUserProfileRepository;
 import api.mrdelivery.repository.IUserRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -23,6 +27,8 @@ public class UserService {
     private final IUserRepository repository;
     private final ModelMapper modelMapper;
     private final IUserProfileRepository iUserProfileRepository;
+    private final JwtService jwtService;
+
 
     public void changePassword(ChangePasswordRequest request, Principal connectedUser){
         var user = (User) (((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal());
@@ -53,8 +59,17 @@ public class UserService {
 
     }
 
-    public UserProfiles saveUserProfiles(UserProfiles userProfiles){
-        //assign user
+    public UserProfiles saveUserProfiles(UserProfiles userProfiles, HttpServletRequest request){
+        final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+        final String refreshToken;
+        final String userEmail;
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return userProfiles;
+        }
+        refreshToken = authHeader.substring(7);
+        userEmail = jwtService.extractUsername(refreshToken);
+        var user = repository.findByEmail(userEmail).get();
+        userProfiles.setUser(user);
         return iUserProfileRepository.save(userProfiles);
     }
 

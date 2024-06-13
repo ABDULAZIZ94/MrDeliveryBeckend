@@ -3,6 +3,7 @@ package api.mrdelivery.domain;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
@@ -31,6 +32,7 @@ public class UserProfiles {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     public User user;
 
     // private String username;
@@ -50,7 +52,7 @@ public class UserProfiles {
     private String biography;
 
     private String socialmedialinks;
-    
+
     @OneToMany(mappedBy = "userProfiles")
     @JsonManagedReference
     private List<UserInterest> interest;
@@ -60,11 +62,11 @@ public class UserProfiles {
     private List<UserSkills> userSkills;
 
     @OneToMany(mappedBy = "userProfiles")
-    @JsonManagedReference   
+    @JsonManagedReference
     private List<UserEducation> education;
 
     @OneToMany(mappedBy = "userProfiles")
-    @JsonManagedReference 
+    @JsonManagedReference
     private List<UserWorkExperience> workexperience;
 
     private LocalDateTime created_at;

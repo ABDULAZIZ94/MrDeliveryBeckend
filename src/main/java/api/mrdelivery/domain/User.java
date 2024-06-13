@@ -53,39 +53,51 @@ public class User implements UserDetails {
     private List<Token> tokens;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<UserActivity> userActivities;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<UserAddresses> userAddresses;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<UserContacts> userContacts;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<UserLoginAttempts> userLoginAttempts;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<UserNotification> userNotifications;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<UserPermission> userPermissions;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<UserPreferences> userPreferences;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<UserProfiles> userProfiles;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<UserRating> userRatings;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<UserSetting> userSettings;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<UserSuscriptions> userSuscriptions;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<UserVerification> userVerifications;
 
 

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import api.mrdelivery.domain.UserProfiles;
 import api.mrdelivery.dto.ChangePasswordRequest;
 import api.mrdelivery.dto.UserDTO;
 import api.mrdelivery.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -58,9 +60,11 @@ public class UserController {
     }
 
     @PostMapping("/basicinfo")
-    public ResponseEntity<UserProfiles> updateBasicInfo(@RequestBody BasicInfoRequest BasicInfo){
+    public ResponseEntity<UserProfiles> updateBasicInfo(
+            HttpServletRequest request,
+            @RequestBody BasicInfoRequest BasicInfo){
         UserProfiles userProfile = modelMapper.map(BasicInfo ,UserProfiles.class);
-        var response = service.saveUserProfiles(userProfile);
+        var response = service.saveUserProfiles(userProfile, request);
         return ResponseEntity.ok(response);
     }
     

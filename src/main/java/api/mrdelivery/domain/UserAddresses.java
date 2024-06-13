@@ -2,6 +2,8 @@ package api.mrdelivery.domain;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -14,13 +16,14 @@ import lombok.Data;
 @Data
 @Entity
 public class UserAddresses {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long address_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     public User user;
 
     private String address_line1;
