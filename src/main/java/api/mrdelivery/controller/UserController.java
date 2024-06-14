@@ -13,15 +13,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import api.mrdelivery.domain.User;
+import api.mrdelivery.domain.UserAddress;
 import api.mrdelivery.domain.UserProfiles;
 import api.mrdelivery.dto.ChangePasswordRequest;
+import api.mrdelivery.dto.UserAddressDTO;
+import api.mrdelivery.dto.UserAddressDto;
 import api.mrdelivery.dto.UserDTO;
 import api.mrdelivery.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
-
-
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -41,10 +42,10 @@ public class UserController {
 
     // @PatchMapping
     // public ResponseEntity<?> chagePassword2(
-    //         @RequestBody ChangePasswordRequest request,
-    //         Principal forgetPwdUser) {
-    //     service.changePassword(request, forgetPwdUser);
-    //     return ResponseEntity.ok().build();
+    // @RequestBody ChangePasswordRequest request,
+    // Principal forgetPwdUser) {
+    // service.changePassword(request, forgetPwdUser);
+    // return ResponseEntity.ok().build();
     // }
 
     @GetMapping("/details")
@@ -62,10 +63,18 @@ public class UserController {
     @PostMapping("/basicinfo")
     public ResponseEntity<UserProfiles> updateBasicInfo(
             HttpServletRequest request,
-            @RequestBody BasicInfoRequest BasicInfo){
-        UserProfiles userProfile = modelMapper.map(BasicInfo ,UserProfiles.class);
+            @RequestBody BasicInfoRequest BasicInfo) {
+        UserProfiles userProfile = modelMapper.map(BasicInfo, UserProfiles.class);
         var response = service.saveUserProfiles(userProfile, request);
         return ResponseEntity.ok(response);
     }
-    
+
+    @PostMapping("/address")
+    public ResponseEntity<UserAddress> address(
+            HttpServletRequest request,
+            @RequestBody UserAddressDTO userAddressDto) {
+        var response = service.saveUserAddress(request, userAddressDto);
+        return ResponseEntity.ok(response);
+    }
+
 }

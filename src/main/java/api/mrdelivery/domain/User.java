@@ -58,7 +58,7 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     @JsonManagedReference
-    private List<UserAddresses> userAddresses;
+    private List<UserAddress> userAddresses;
 
     @OneToMany(mappedBy = "user")
     @JsonManagedReference

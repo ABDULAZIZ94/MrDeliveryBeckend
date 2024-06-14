@@ -3,7 +3,7 @@ package api.mrdelivery.dto;
 import java.util.List;
 
 import api.mrdelivery.domain.UserActivity;
-import api.mrdelivery.domain.UserAddresses;
+import api.mrdelivery.domain.UserAddress;
 import api.mrdelivery.domain.UserContacts;
 import api.mrdelivery.domain.UserLoginAttempts;
 import api.mrdelivery.domain.UserNotification;
@@ -33,7 +33,7 @@ public class UserDTO {
     private Role role;
 
     private List<UserActivity> userActivities;
-    private List<UserAddresses> userAddresses;
+    private List<UserAddress> userAddresses;
     private List<UserContacts> userContacts;
     private List<UserLoginAttempts> userLoginAttempts;
     private List<UserNotification> userNotifications;
